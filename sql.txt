@@ -1,7 +1,5 @@
-SELECT * FROM usuarios
+select * from usuarios
 ALTER TABLE ventas ADD columna
 DROP TABLE proveedores_temp
-CREATE USER manager INDENTIFIED BY pswd2023
-UPDATE parts SET lead_time = 30, cost = 120, status = 1 WHERE part_id = 5;
+CREATE USER manager IDENTIFIED BY contrasena
 ALTER USER jsanchez QUOTA UNLIMITED ON usuarios
-GRANT CREATE TABLE, CONNECT TO rol1
