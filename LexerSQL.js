@@ -6,9 +6,11 @@ const fs = require('fs');
 
 const archivoSQL = 'sql.txt';
 const archivoKeywords = 'sqlkeywords.txt';
+const archivoErrores = 'logErrores.txt';
 
 // Crear un mapa para almacenar las palabras clave y sus números asociados
 const keywordsMap = new Map();
+let errores = '';
 
 // Leer el archivo de palabras clave y cargarlo en el mapa
 fs.readFile(archivoKeywords, 'utf8', (err, data) => {
@@ -29,7 +31,7 @@ fs.readFile(archivoKeywords, 'utf8', (err, data) => {
             return;
         }
         const sentencias = data.split('\n');
-
+        
         // Tokenizar y asignar números
         sentencias.forEach((sentencia, index) => {
             const tokens = sentencia.split(/\s+/); // Dividir por espacios en blanco
@@ -44,8 +46,7 @@ fs.readFile(archivoKeywords, 'utf8', (err, data) => {
                     }
                 }
                 return numero;
-                /*const numero = keywordsMap.get(token.toUpperCase());
-                return numero !== undefined ? numero : token;*/
+                
             });
 
             console.log(`Sentencia ${index + 1}:`);
@@ -53,6 +54,21 @@ fs.readFile(archivoKeywords, 'utf8', (err, data) => {
             console.log('Token:');
             console.log(numerosTokens.join('|'));
             console.log('-------------------------');
+
+             // Verificar la sintaxis de las sentencias
+             if (numerosTokens[0] !== 655 || !(numerosTokens[1] === 7 || numerosTokens[1] === 999) || numerosTokens[2] !== 309 || 
+             numerosTokens[numerosTokens.length - 1] !== 999) {
+                errores += `Error en la sentencia ${index + 1}: ${sentencia}. Verifica tu setencia...\n`;
+            }
+        });
+
+        // Escribir los errores en el archivo de errores
+        fs.writeFile(archivoErrores, errores, (err) => {
+            if (err) {
+                console.error(err);
+            }
+            //validarSelect(numerosTokens);
         });
     });
 });
+

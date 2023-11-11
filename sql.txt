@@ -1,6 +1,5 @@
-select * from usuarios
-ALTER TABLE ventas ADD columna
-DROP TABLE proveedores_temp
-CREATE USER manager IDENTIFIED BY contrasena
-ALTER USER jsanchez QUOTA UNLIMITED ON usuarios
-USE database;
+select where from usuarios
+select * where usuarios
+select * from tabla
+SELECT * FROM tabla
+ACCESIBLE ACCOUNT ACTION ; 
