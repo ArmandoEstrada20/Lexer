@@ -1,13 +1,8 @@
-/*Realizar un programa que analice un achivo, el cual contendrá sentencias SQL.
-El programa leerá las sentencias y las mostrará en pantalla, al mismo tiempo que leerá el archivo sqlkeywords
-y segun las sentencias que esten contenidas en el archivo sql se le asignará un token a cada palabra de dicho archivo.
-*/
 const fs = require('fs');
 
 const archivoSQL = 'sql.txt';
 const archivoKeywords = 'sqlkeywords.txt';
 const archivoErrores = 'logErrores.txt';
-
 // Crear un mapa para almacenar las palabras clave y sus números asociados
 const keywordsMap = new Map();
 let errores = '';
@@ -54,21 +49,15 @@ fs.readFile(archivoKeywords, 'utf8', (err, data) => {
             console.log('Token:');
             console.log(numerosTokens.join('|'));
             console.log('-------------------------');
+            });
 
-             // Verificar la sintaxis de las sentencias
-             if (numerosTokens[0] !== 655 || !(numerosTokens[1] === 7 || numerosTokens[1] === 999) || numerosTokens[2] !== 309 || 
-             numerosTokens[numerosTokens.length - 1] !== 999) {
-                errores += `Error en la sentencia ${index + 1}: ${sentencia}. Verifica tu setencia...\n`;
-            }
-        });
+            
 
         // Escribir los errores en el archivo de errores
         fs.writeFile(archivoErrores, errores, (err) => {
             if (err) {
                 console.error(err);
             }
-            //validarSelect(numerosTokens);
         });
     });
 });
-

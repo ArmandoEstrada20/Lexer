@@ -1,5 +1,2 @@
-select where from usuarios
-select * where usuarios
-select * from tabla
-SELECT * FROM tabla
-ACCESIBLE ACCOUNT ACTION ; 
+select * from tabla ;
+create table usuario ;
